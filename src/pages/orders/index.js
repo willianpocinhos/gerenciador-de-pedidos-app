@@ -100,7 +100,7 @@ const Orders = () => {
                                 <Text>
                                     <Description
                                         value={item.order}
-                                        onChange={e => 
+                                        onKeyUp={e => 
                                             updateOrder(item.id, e.target.value, item.customer)}
                                     />
 
