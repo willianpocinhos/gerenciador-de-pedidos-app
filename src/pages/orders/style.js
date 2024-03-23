@@ -29,7 +29,7 @@ export const Text = styled.div`
     margin-right: 10px;
 `
 
-export const Description = styled.textarea`
+export const Description = styled.input`
     background-color: #6B6764;
     border: none;
     color: #fff;
@@ -40,7 +40,7 @@ export const Description = styled.textarea`
     resize: none;
 `
 
-export const Client = styled.textarea`
+export const Client = styled.input`
     border: none;
     background-color: #6B6764;
     color: #fff;
