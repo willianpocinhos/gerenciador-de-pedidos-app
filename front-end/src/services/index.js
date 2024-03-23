@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = 'https://gerenciador-de-pedidos-app.vercel.app/'
+const apiUrl = process.env.REACT_APP_API_URL
 
 const address = axios.create({
     baseURL: apiUrl
