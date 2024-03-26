@@ -11,7 +11,7 @@ export const ButtonStyle = styled.button`
     font-size: 24px;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: .2s;
+    transition: .1s;
     margin-top: 30px;
 
     &:hover{
