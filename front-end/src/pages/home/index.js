@@ -8,12 +8,14 @@ import {
     Link
 } from "./style";
 
+// COMPONENTS
 import H1 from "../../components/h1";
 import Button from "../../components/button";
 import Frame from "../../components/frame";
 import Label from "../../components/label";
 import Input from "../../components/input";
 import Container from "../../components/container";
+import Footer from "../../components/footer";
 
 
 //APLICAÇÃO------------------------------------------
@@ -60,6 +62,9 @@ const Home = () => {
                 <Button onClick={addOrder}>ENVIAR</Button>
                 <Link onClick={showOrders}>Visualizar pedidos</Link>
             </Frame>
+
+            <Footer/>
+            
         </Container>
     )
 }

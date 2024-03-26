@@ -17,10 +17,12 @@ import {
     Msg
 } from "./style";
 
+// COMPONENTS
 import H1 from "../../components/h1";
 import Button from "../../components/button";
 import Frame from "../../components/frame";
 import Container from "../../components/container";
+import Footer from "../../components/footer";
 
 
 // APLICAÇÃO--------------------------------------
@@ -99,13 +101,12 @@ const Orders = () => {
                             <Order key={item.id}>
                                 <Text>
                                     <Description
-                                        value={item.order}
-                                        onKeyUp={e => 
-                                            updateOrder(item.id, e.target.value, item.customer)}
+                                        defaultValue={item.order}
+                                        onChange={e => updateOrder(item.id, e.target.value, item.customer)}
                                     />
 
                                     <Client
-                                        value={item.customer}
+                                        defaultValue={item.customer.toUpperCase()}
                                         onChange={e => updateOrder(item.id, item.order, e.target.value)}
                                     />
                                 </Text>
@@ -119,6 +120,9 @@ const Orders = () => {
                 </List>
                 <Button onClick={goBack} transparent='true'>VOLTAR</Button>
             </Frame>
+
+            <Footer/>
+            
         </Container>
     )
 }
