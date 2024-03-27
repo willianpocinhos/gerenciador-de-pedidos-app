@@ -29,7 +29,7 @@ const Home = () => {
 
     const showOrders = () => navigate('/orders')
 
-    
+
     // CREATE ORDER
     const addOrder = async () => {
         const timer = setTimeout(() => {
@@ -37,20 +37,24 @@ const Home = () => {
         }, 1000);
 
         try {
-            const typedOrder = order.current.value
-            const typedCustomer = customer.current.value
+            if (order.current.value === '' || customer.current.value === '') {
+                alert('Preencha todos os campos.')
+            } else {
+                const typedOrder = order.current.value
+                const typedCustomer = customer.current.value
 
-            await method.createOrder({
-                order: typedOrder,
-                customer: typedCustomer
-            })
+                await method.createOrder({
+                    order: typedOrder,
+                    customer: typedCustomer
+                })
 
-            
-            alert('Pedido enviado!')
 
-            order.current.value = ''
-            customer.current.value = ''
-            
+                alert('Pedido enviado!')
+
+                order.current.value = ''
+                customer.current.value = ''
+            }
+
         } catch (error) {
             console.log('Erro ao enviar pedido: ', error)
 
@@ -60,32 +64,32 @@ const Home = () => {
         }
     }
 
-        return (
-            <Container>
-                <Frame>
-                    <Img src={Logo} alt="logo" />
-                    <H1>Faça seu pedido!</H1>
+    return (
+        <Container>
+            <Frame>
+                <Img src={Logo} alt="logo" />
+                <H1>Faça seu pedido!</H1>
 
-                    <Label>Pedido</Label>
-                    <Input type="text" ref={order}></Input>
+                <Label>Pedido</Label>
+                <Input type="text" ref={order}></Input>
 
-                    <Label>Cliente</Label>
-                    <Input type="text" ref={customer}></Input>
+                <Label>Cliente</Label>
+                <Input type="text" ref={customer}></Input>
 
-                    <Button onClick={addOrder}>ENVIAR</Button>
-                    <Link onClick={showOrders}>Visualizar pedidos</Link>
+                <Button onClick={addOrder}>ENVIAR</Button>
+                <Link onClick={showOrders}>Visualizar pedidos</Link>
 
-                    {loading &&
-                        <Notification>Conectando ao <br />
-                            servidor...
-                        </Notification>
-                    }
-                </Frame>
+                {loading &&
+                    <Notification>Conectando ao <br />
+                        servidor...
+                    </Notification>
+                }
+            </Frame>
 
-                <Footer />
+            <Footer />
 
-            </Container>
-        )
-    }
+        </Container>
+    )
+}
 
-    export default Home
+export default Home
