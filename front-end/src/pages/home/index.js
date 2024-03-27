@@ -1,11 +1,12 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import method from "../../services/requests"
 
 import Logo from "../../assets/logo.png"
 import {
     Img,
-    Link
+    Link,
+    Notification
 } from "./style";
 
 // COMPONENTS
@@ -24,49 +25,67 @@ const Home = () => {
     const order = useRef()
     const customer = useRef()
 
+    const [loading, setLoading] = useState(false)
+
     const showOrders = () => navigate('/orders')
 
-
+    
     // CREATE ORDER
     const addOrder = async () => {
-        const typedOrder = order.current.value
-        const typedCustomer = customer.current.value
+        const timer = setTimeout(() => {
+            setLoading(true)
+        }, 1000);
 
-        const { data: newOrder } = await method.createOrder({
-            order: typedOrder,
-            customer: typedCustomer
-        })
-        //     const {data: newOrder} = await axios.post('http://localhost:3001/create', {
-        //         order: typedOrder,
-        //         customer: typedCustomer
-        // })
+        try {
+            const typedOrder = order.current.value
+            const typedCustomer = customer.current.value
 
-        alert('Pedido enviado!')
+            await method.createOrder({
+                order: typedOrder,
+                customer: typedCustomer
+            })
 
-        order.current.value = ''
-        customer.current.value = ''
+            
+            alert('Pedido enviado!')
+
+            order.current.value = ''
+            customer.current.value = ''
+            
+        } catch (error) {
+            console.log('Erro ao enviar pedido: ', error)
+
+        } finally {
+            clearTimeout(timer)
+            setLoading(false)
+        }
     }
 
-    return (
-        <Container>
-            <Frame>
-                <Img src={Logo} alt="logo"></Img>
-                <H1>Faça seu pedido!</H1>
+        return (
+            <Container>
+                <Frame>
+                    <Img src={Logo} alt="logo" />
+                    <H1>Faça seu pedido!</H1>
 
-                <Label>Pedido</Label>
-                <Input type="text" ref={order}></Input>
+                    <Label>Pedido</Label>
+                    <Input type="text" ref={order}></Input>
 
-                <Label>Cliente</Label>
-                <Input type="text" ref={customer}></Input>
+                    <Label>Cliente</Label>
+                    <Input type="text" ref={customer}></Input>
 
-                <Button onClick={addOrder}>ENVIAR</Button>
-                <Link onClick={showOrders}>Visualizar pedidos</Link>
-            </Frame>
+                    <Button onClick={addOrder}>ENVIAR</Button>
+                    <Link onClick={showOrders}>Visualizar pedidos</Link>
 
-            <Footer/>
-            
-        </Container>
-    )
-}
+                    {loading &&
+                        <Notification>Conectando ao <br />
+                            servidor...
+                        </Notification>
+                    }
+                </Frame>
 
-export default Home
+                <Footer />
+
+            </Container>
+        )
+    }
+
+    export default Home
