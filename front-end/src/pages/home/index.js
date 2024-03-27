@@ -37,7 +37,7 @@ const Home = () => {
         }, 500);
 
         try {
-            if (order.current.value === '' || customer.current.value === '') {
+            if (order.current.value == '' || customer.current.value == '') {
                 alert('Preencha todos os campos.')
             } else {
                 const typedOrder = order.current.value
