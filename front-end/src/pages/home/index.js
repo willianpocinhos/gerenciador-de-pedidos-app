@@ -34,7 +34,7 @@ const Home = () => {
     const addOrder = async () => {
         const timer = setTimeout(() => {
             setLoading(true)
-        }, 1000);
+        }, 500);
 
         try {
             if (order.current.value === '' || customer.current.value === '') {
