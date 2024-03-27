@@ -48,7 +48,6 @@ const Home = () => {
                     customer: typedCustomer
                 })
 
-                console.log('conteudo: ', order.current.value)
                 alert('Pedido enviado!')
 
                 order.current.value = ''
