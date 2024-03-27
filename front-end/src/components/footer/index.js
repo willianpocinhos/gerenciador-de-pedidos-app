@@ -4,7 +4,7 @@ import { FooterStyle } from "./style";
 const Footer = () => {
     return (
         <FooterStyle>
-            <p>Desenvolvido por <a href="" _blanck>Willian P Santos</a></p>
+            <p>Desenvolvido por <a href='https://www.linkedin.com/in/willian-p-santos/' _blanck='true' >Willian P Santos</a></p>
         </FooterStyle>
     )
 }
