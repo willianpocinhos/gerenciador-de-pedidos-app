@@ -90,7 +90,7 @@ const Orders = () => {
     return (
         <Container>
             <Frame>
-                <Img src={Logo} alt="logo"></Img>
+                <Img src={Logo} alt="logo" />
                 <H1>Lista de Pedidos</H1>
                 <List>
                     {orders.length == 0 ? (
