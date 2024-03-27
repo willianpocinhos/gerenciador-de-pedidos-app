@@ -38,9 +38,9 @@ const Home = () => {
 
         try {
             if (order.current.value === "" || customer.current.value === "") {
-                console.log('conteudo: ', order)
                 alert('Preencha todos os campos.')
             } else {
+                console.log('conteudo: ', order)
                 const typedOrder = order.current.value
                 const typedCustomer = customer.current.value
 
